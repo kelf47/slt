@@ -12,12 +12,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # Define login and registration forms (for flask-login)
 class LoginForm(form.Form):
-    login = fields.TextField(validators=[validators.required()])
+    email = fields.TextField(validators=[validators.required()])
     password = fields.PasswordField(validators=[validators.required()])
 
-    def validate_login(self, field):
+    def validate_login(self):
         user = self.get_user()
-
         if user is None:
             raise validators.ValidationError('Invalid user')
 
@@ -26,7 +25,7 @@ class LoginForm(form.Form):
             raise validators.ValidationError('Invalid password')
 
     def get_user(self):
-        return db.session.query(User).filter_by(login=self.login.data).first()
+        return db.session.query(User).filter_by(email=self.email.data).first()
 
 
 # Create customized index view class that handles login & registration
@@ -44,8 +43,10 @@ class MyAdminIndexView(admin.AdminIndexView):
         form = LoginForm(request.form)
         if helpers.validate_form_on_submit(form):
             user = form.get_user()
-            login.login_user(user)
-
+            if user is not None:
+                login.login_user(user)
+            else:
+                form.password.errors.append('Credencials invalides')
         if login.current_user.is_authenticated:
             return redirect(url_for('.index'))
         self._template_args['form'] = form

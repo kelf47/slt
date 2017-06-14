@@ -17,26 +17,20 @@ class User(db.Model, UserMixin):
     # User authentication information (required for Flask-User)
     email = db.Column(db.Unicode(255), nullable=False, server_default=u'',
                       unique=True)
-    confirmed_at = db.Column(db.DateTime())
     password = db.Column(db.String(255), nullable=False, server_default='')
-    active = db.Column(db.Boolean(), nullable=False, server_default='0')
+    actiu = db.Column(db.Boolean(), nullable=False, server_default='0')
 
     # User information
-    active = db.Column('is_active', db.Boolean(), nullable=False,
-                       server_default='0')
-    first_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
-    last_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
-    login = db.Column(db.String(80), unique=True)
+    actiu = db.Column('is_active', db.Boolean(), nullable=False,
+                      server_default='0')
+    nom = db.Column(db.Unicode(50), nullable=False, server_default=u'')
     # Relationships
     roles = db.relationship('Role', secondary='users_roles',
                             backref=db.backref('users', lazy='dynamic'))
-    documents = db.relationship('File', secondary='users_files',
-                                backref=db.backref('users', lazy='dynamic'))
 
     def __str__(self):
-        return u"Nom : {first_name} {last_name};  Email: {email})".format(
-            first_name=self.first_name, last_name=self.last_name,
-            filename=self.email)
+        return u"Nom : {name};  Email: {email})".format(
+            name=self.nom, email=self.email)
 
 
 # Define the Role data model
@@ -70,25 +64,25 @@ class BlobMixin(object):
     size = db.Column(db.Integer, nullable=False)
 
 
-class File(db.Model, BlobMixin):
-    __tablename__ = 'files'
+class Document(db.Model, BlobMixin):
+    __tablename__ = 'documents'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Unicode(length=255), nullable=False, unique=True)
-    public = db.Column(db.Boolean(), nullable=False, server_default='0')
+    nom = db.Column(db.Unicode(length=255), nullable=False, unique=True)
+    compartit = db.Column(db.Boolean(), nullable=False, server_default='0')
+    clients = db.relationship('User', secondary='users_documents',
+                              backref=db.backref('documents', lazy='dynamic'))
 
     def __str__(self):
         return u"nom: {name}; document: {filename})".format(
-            name=self.name, filename=self.filename)
+            name=self.nom, filename=self.filename)
 
 
-class UsersFiles(db.Model):
-    __tablename__ = 'users_files'
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.Integer(), db.ForeignKey('users.id',
-                        ondelete='CASCADE'))
-    file_id = db.Column(db.Integer(), db.ForeignKey('files.id',
-                        ondelete='CASCADE'))
+users_documents = db.Table(
+    'users_documents',
+    db.Column('document_id', db.Integer, db.ForeignKey('documents.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'))
+)
 
 
 class BlobUploadField(fields.StringField):
@@ -128,7 +122,9 @@ class BlobUploadField(fields.StringField):
         super(BlobUploadField, self).pre_validate(form)
         if self._is_uploaded_file(self.data) and not self.is_file_allowed(
                 self.data.filename):
-            raise ValidationError('Format no valid')
+            raise ValidationError(
+                'Format no valid. Formats acceptats: '
+                '[.pdf, .doc, .docx, .xls, .xlsx]')
 
     def process_formdata(self, valuelist):
         if valuelist:
@@ -155,6 +151,8 @@ class BlobUploadField(fields.StringField):
 
 class AdminModelView(ModelView):
 
+    column_searchable_list = ('nom', 'email',)
+
     def is_accessible(self):
         if current_user.is_authenticated:
             return current_user.has_role('admin')
@@ -163,11 +161,11 @@ class AdminModelView(ModelView):
 
 class FileView(AdminModelView):
 
-    column_list = ('name', 'size', 'filename', 'mimetype', 'download')
-    form_columns = ('name', 'blob')
-
+    column_list = ('nom', 'size', 'filename', 'mimetype', 'download')
+    form_columns = ('nom', 'clients', 'compartit', 'blob')
+    column_searchable_list = ('nom',)
     form_extra_fields = {'blob': BlobUploadField(
-        label='File',
+        label='Document',
         allowed_extensions=['pdf', 'doc', 'docx', 'xls', 'xlsx'],
         size_field='size',
         filename_field='filename',
