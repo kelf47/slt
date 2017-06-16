@@ -18,11 +18,11 @@ class LoginForm(form.Form):
     def validate_login(self):
         user = self.get_user()
         if user is None:
-            raise validators.ValidationError('Invalid user')
+            raise validators.ValidationError('Usuari invàlid')
 
         # we're comparing the plaintext pw with the the hash from the db
         if user.password != self.password.data:
-            raise validators.ValidationError('Invalid password')
+            raise validators.ValidationError('Password invàlid')
 
     def get_user(self):
         return db.session.query(User).filter_by(email=self.email.data).first()
@@ -44,9 +44,13 @@ class MyAdminIndexView(admin.AdminIndexView):
         if helpers.validate_form_on_submit(form):
             user = form.get_user()
             if user is not None:
-                login.login_user(user)
+                if user.has_role('admin'):
+                    login.login_user(user)
+                else:
+                    form.password.errors.append(
+                        "No tens permisos d'administrador")
             else:
-                form.password.errors.append('Credencials invalides')
+                form.password.errors.append('Credencials invàlides')
         if login.current_user.is_authenticated:
             return redirect(url_for('.index'))
         self._template_args['form'] = form
