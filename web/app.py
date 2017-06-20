@@ -43,6 +43,21 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/qui_som', methods=['GET'])
+def qui_som():
+    return render_template("qui_som.html")
+
+
+@app.route('/que_fem', methods=['GET'])
+def que_fem():
+    return render_template("que_fem.html")
+
+
+@app.route('/contacte', methods=['GET'])
+def contactce():
+    return render_template("contacte.html")
+
+
 # download route
 @app.route("/download/<int:id>", methods=['GET'])
 def download_blob(id):

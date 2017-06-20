@@ -5,7 +5,7 @@
     <div>
         {% if current_user.is_authenticated %}
         <div class="welcome-div">
-            <img src="/static/img/salut-logo.png">
+            <img src="/static/images/salut-logo.png">
             <p> Panell d'Administració</p>
             <p>
                 Benvingut <b>{{current_user.nom}}</b>!
@@ -14,7 +14,7 @@
         {% else %}
         <div class="form-div">
             <form class="submit-form" method="POST" action="">
-                <img src="/static/img/salut-logo.png">
+                <img src="/static/images/salut-logo.png">
                 <p> Panell d'Administració</p>
                 {{ form.hidden_tag() if form.hidden_tag }}
                 {% for f in form if f.type != 'CSRFTokenField' %}
