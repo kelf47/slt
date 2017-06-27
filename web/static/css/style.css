@@ -6,13 +6,15 @@ body {
 	width:100%;
 	color:#6e6e6e;
 	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
+	min-height:800;
+	background-image: url("../images/background21.png");
+	background-size: cover;
+	background-repeat:no-repeat;
+
 }
 html, .main {
 	padding:0;
 	margin:0;
-}
-.main {
-	background:#fff;
 }
 .clr {
 	clear:both;
@@ -30,9 +32,13 @@ h2 {
 	color:#232323;
 }
 p {
-	margin:8px 0;
-	padding:0 0 8px 0;
+	line-height: 1.6em;
 }
+
+li{
+	line-height: 1.6em;
+}
+
 a {
 	color:#fc6400;
 	text-decoration:underline;
@@ -69,6 +75,28 @@ a {
 	position:relative;
 	top: 5px;
 	right:-29px;
+}
+
+.index-info{
+	margin-top:30px;
+	font-size:1.6em;
+	font-weight: bold;
+	color:#fc6400;
+	text-align:center;
+}
+
+.index-info-sub{
+	margin-top:10px;
+	font-size:1.5em;
+	color:#ff9900;
+	text-align:center;
+}
+
+.image-box > img{
+	display:block;
+	float:right;
+	height:100px;
+	width:auto;
 }
 
 h1 {
@@ -159,7 +187,6 @@ h1 small {
 }
 .content {
 	padding:18px 0;
-	border-bottom:1px solid #abb6b6;
 }
 .content_resize {
 	margin:0 auto;
@@ -170,8 +197,13 @@ h1 small {
 	margin:0;
 	padding:0;
 	float:left;
-	width:670px;
+	width:100%;
 }
+
+.content h2{
+	margin:0 0 0 10px!important;
+}
+
 .content .mainbar h2 {
 	margin:0 0 0 96px;
 	padding-bottom:0;
@@ -211,12 +243,6 @@ ol {
 
 ol > li{
 	margin: 10px 0;
-}
-
-.background{
-	background-image: url("../images/background21.png");
-	background-size: cover;
-	background-repeat:no-repeat;
 }
 
 .content .mainbar .post_content {
@@ -480,13 +506,19 @@ ol li .send {
 	float:left;
 }
 .footer {
+	border-top:1px solid #abb6b6;
 	background:#ededed;
+	position:fixed;
+	bottom:0;
+	width:100%;
+
 }
 .footer_resize {
 	margin:0 auto;
-	padding:0 20px;
+	padding:0 15px;
+	texta-align:center;
 	width:920px;
-	line-height:1.5em;
+	line-height:1.2em;
 	color:#6b6b6b;
 }
 .footer_resize p {

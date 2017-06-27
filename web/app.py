@@ -53,6 +53,11 @@ def que_fem():
     return render_template("que_fem.html")
 
 
+@app.route('/acces', methods=['GET'])
+def acces():
+    return render_template("qui_som1.html")
+
+
 @app.route('/contacte', methods=['GET'])
 def contactce():
     return render_template("contacte.html")
