@@ -18,3 +18,22 @@ Cufon.replace('h1, h2, h3, h4, h5, h6, .menu_nav ul li a', { hover: true });
 //Cufon.replace('h1 small', { color: '#8a98a5'});
 
 // ]]>
+
+jQuery(document).ready(function($)
+{
+  $("#more").click(function()
+  {
+    $("#expand-plagues").slideToggle( "slow");
+
+      if ($("#more").text() == "Següeix llegint")
+      {
+        $("#more").html("Minimitza");
+      }
+      else
+      {
+        $("#more").text("Següeix llegint");
+      }
+
+  });
+
+});

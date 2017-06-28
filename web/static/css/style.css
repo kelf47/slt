@@ -186,7 +186,7 @@ h1 small {
 	background:#fc6400;
 }
 .content {
-	padding:18px 0;
+	padding:18px 0 50px 0;
 }
 .content_resize {
 	margin:0 auto;
@@ -201,7 +201,7 @@ h1 small {
 }
 
 .content h2{
-	margin:0 0 0 10px!important;
+	margin:0 0 0 0!important;
 }
 
 .content .mainbar h2 {
