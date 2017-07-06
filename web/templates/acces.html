@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Salut Ambiental</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="static/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="static/css/coin-slider.css" />
+<script type="text/javascript" src="static/js/cufon-yui.js"></script>
+<script type="text/javascript" src="static/js/cufon-titillium-250.js"></script>
+<script type="text/javascript" src="static/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="static/js/script.js"></script>
+<script type="text/javascript" src="static/js/coin-slider.min.js"></script>
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  margin: 80px auto; 
+}
+
+form {
+  max-width: 60%;
+  padding: 10px;
+  border-left: 1px solid #dedede;
+  border-right: 1px solid #dedede;
+  margin: 0 auto;
+}
+
+input {
+  font-family: Raleway, sans-serif;
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+input[type="text"],
+input[type="password"]{
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid #efefef;
+  position: relative;
+  transition: border .55s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #f8c573;
+}
+
+input[type="submit"]{
+  width: 40%;
+  background: #fc6400; 
+  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  transtion: background-color .5s;
+}
+
+input[type="submit"]:hover{
+  background: #ff9900;
+  cursor: pointer;
+}
+
+table a:link {
+  color: #666;
+  font-weight: bold;
+  text-decoration: none; 
+}
+table a:visited {
+  color: #999999;
+  font-weight: bold;
+  text-decoration:none;
+}
+table a:active,
+table a:hover {
+  color: #bd5a35;
+  text-decoration:underline;
+}
+
+table {
+  margin-top:40px;
+  font-family:Arial, Helvetica, sans-serif;
+  color:#666;
+  font-size:12px;
+  text-shadow: 1px 1px 0px #fff;
+  background:#eaebec;
+  border:#ccc 1px solid;
+  width:100%;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+
+  -moz-box-shadow: 0 1px 2px #d1d1d1;
+  -webkit-box-shadow: 0 1px 2px #d1d1d1;
+  box-shadow: 0 1px 2px #d1d1d1;
+}
+
+table th {
+  padding:21px 25px 22px 25px;
+  border-top:1px solid #fafafa;
+  border-bottom:1px solid #e0e0e0;
+
+  background: #ededed;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+  background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+table th:first-child {
+  text-align: left;
+  padding-left:20px;
+}
+table tr:first-child th:first-child {
+  -moz-border-radius-topleft:3px;
+  -webkit-border-top-left-radius:3px;
+  border-top-left-radius:3px;
+}
+table tr:first-child th:last-child {
+  -moz-border-radius-topright:3px;
+  -webkit-border-top-right-radius:3px;
+  border-top-right-radius:3px;
+}
+table tr {
+  text-align: center;
+  padding-left:20px;
+}
+table td:first-child {
+  text-align: left;
+  padding-left:20px;
+  border-left: 0;
+}
+table td {
+  padding:18px;
+  border-top: 1px solid #ffffff;
+  border-bottom:1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+
+  background: #fafafa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+  background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+table tr.even td {
+  background: #f6f6f6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+  background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+}
+table tr:last-child td {
+  border-bottom:0;
+}
+table tr:last-child td:first-child {
+  -moz-border-radius-bottomleft:3px;
+  -webkit-border-bottom-left-radius:3px;
+  border-bottom-left-radius:3px;
+}
+table tr:last-child td:last-child {
+  -moz-border-radius-bottomright:3px;
+  -webkit-border-bottom-right-radius:3px;
+  border-bottom-right-radius:3px;
+}
+table tr:hover td {
+  background: #f2f2f2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+  background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);  
+  
+  
+.tab {
+  widht: 300px;
+  height: 200px;
+}
+
+</style>
+</head>
+<body>
+<div class="main background">
+  <div class="header">
+    <div class="header_resize">
+      <div class="logo">
+        <a href="index.html"><img src="static/images/logo.png"></a> <p>Serveis de gestió sanitària i ambiental</p>
+      </div>
+      <div class="clr"></div>
+      <div class="menu_nav">
+        <ul>
+          <li><a href="/"><span>Inici</span></a></li>
+          <li><a href="qui_som"><span>Qui Som</span></a></li>
+          <li><a href="que_fem"><span>Que fem</span></a></li>
+          <li class="active"><a href="acces"><span>Accés</span></a></li>
+          <li><a href="contacte"><span>Contacte</span></a></li>
+        </ul>
+      </div>
+      <div class="clr"></div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article" style="width:100%; border-bottom:0px;margin-top:20px">
+          {% if current_user.is_authenticated %} 
+          <div>
+          <h2 style="margin-top:40px;border-bottom: solid 0.5px;padding-bottom: 20px;border-color: gainsboro;"><span;>Espai clients</span></h2>
+          <span style="margin-top:40px;display:block;float:left;font-size:1.9em;color:#fc6400"> Benvingut {{current_user.email}}</span>
+          <form style="display:block;float:right;border: 0px;width:350px;padding:0px;margin-top:30px" action="/logout" method="post">
+                <input type="submit" name="submit" value="logout">
+          </form>          </span;>
+          </div>
+          {% else %}
+          <h2 style="margin-top:40px"><span;>Accés clients</span></h2>
+          {% endif %}
+            <div class="clr" style="margin-bottom:100px"></div>
+              {% if current_user.is_authenticated%}
+                <h2> Documents </h2>
+                {% if current_user.documents.all() %}
+                <table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
+
+                  <!-- Table Header -->
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Tamany</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <!-- Table Header -->
+                  <tbody >
+                {% for doc in docs %}
+
+                  <!-- Table Body -->
+                    
+                    <tr {% if loop.index %2 == 0 %}class="even"{% endif %}>
+                      <td>{{doc.nom}}</td>
+                      <td>
+                      {% set size = doc.size/1048576 %}
+                      {{'%0.2f' % size|float}} MB
+
+                      </td>
+                      <td><a href="/download/{{doc.id}}">Descarrega</a></td>
+                    </tr><!-- Table Row -->
+
+                  <!-- Table Body -->
+
+                {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                <p style="margin-top:40px"> No hi ha documents disponibles per a descarregar.</p>
+                {% endif %}
+              {% else %}
+              <form action="/acces" method="post">
+                <input type="text" id="email" name="email" placeholder="Email">
+                <input type="password" id="password" name="password" placeholder="Contrassenya">
+                <input type="submit" name="submit" value="Login">
+                {% if error %}{{error}}{% endif %}
+              </form>
+            {% endif %}
+        </div>
+      </div>
+
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer_resize">
+      <p style="text-algin:center"> Salut Ambiental, S.C.P. | C/Purgatori, 12 - P.I. La Gavarra | 08450 CENTELLES | Tel/fax: 93 881 37 60 | <a href="mailto:info@salutambiental.cat">info@salutambiental.cat</a></p>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

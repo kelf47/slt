@@ -8,8 +8,10 @@ body {
 	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
 	min-height:800;
 	background-image: url("../images/background21.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
 	background-size: cover;
-	background-repeat:no-repeat;
 
 }
 html, .main {
@@ -230,9 +232,204 @@ h1 small {
 
 .article {
 	padding-bottom:10px!important;
+	display:inline-block;
 }
 .article > p {
 	font-size:1.2em;
+}
+
+/* Galeria */
+
+.img-art{
+	margin-top:20px;
+}
+
+.img-art > div {
+	position:relative;
+	float:left;
+	padding: 5px;
+	width:9%;
+
+}
+
+.img-art > div > img{
+	width:100%;
+	height:auto;
+	display: block;
+    transition: .1s transform;
+    transform: translateZ(0); /* hack */
+}
+
+.img-art > div:hover {
+  z-index: 1;
+}
+
+.img-art > div:hover > img {
+  transform: scale(1.7,1.7);
+  transition: .3s transform;
+}
+
+.img-art:before, .img-art:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.img-art:after {
+  clear: both;
+}
+
+.productes{
+	background-color:#fc6400;
+	height:auto;
+	display:inline-block;
+	width:190px;
+	padding:15px;
+	font-color:white;
+	font-size:1.6em;
+	text-align:center;
+	border-radius: 6px;
+	margin-top:25px;
+	margin-bottom:20px;
+	cursor:pointer;
+}
+.productes > span{
+	text-align:center;
+	color:white;
+	width:auto;
+}
+
+.header-left{
+	display:block;
+	width:90%;
+	float:left;
+	height:auto;
+}
+.header-right{
+	width:10%;
+	float:right;
+	display:block;
+	height:auto;
+}
+.header-right > img {
+	width:80%;
+	height:auto;
+	display:block;
+	float:right;
+}
+/*  --------------------- galeria ---------------------------  */
+
+
+.login { 
+	height:110px;
+	width:190px;
+	margin:auto;
+	border:1px #CCC solid;
+	padding:10px;
+}
+
+.login input { 
+	padding:5px;
+	margin:5px
+ }
+
+/* ----------- MODAL ----------------*/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+html.noscroll {
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height:700px;
+}
+
+.modal-header{
+	height:10%;
+	background-color:#fc6400;
+	display:table;
+	width:100%;
+}
+
+.modal-header > span {
+	font-size:2.4em;
+	color:white;
+	margin-left:580px;
+	display:table-cell;
+	vertical-align:middle;
+}
+.modal-header > img {
+	margin-top: 6px;
+	margin-left: 20px;
+	height: 60px;
+	width: auto;
+}
+
+.modal-body{
+	overflow-y:scroll;
+	height:90%;
+	
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-right: 25px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --------------------------------------------------------------- */
+
+.article-left {
+	display:block;
+	width:60%;
+	float:left;
+}
+
+.article-right{
+	display:block;
+	width:38%;
+	float:right;
+	height:400px;
+}
+
+.article-right > img{
+	height:32%;
+	margin-top:15px;
+	width:auto;
+	display:inline-block;
+	float:right;
 }
 
 ol {
@@ -267,6 +464,7 @@ ol > li{
 	color:#fff;
 	background:#fc6400;
 }
+
 ul.sb_menu, ul.ex_menu {
 	margin:0;
 	padding:0;

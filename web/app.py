@@ -1,11 +1,13 @@
 from flask import request, render_template
 from index import app, db
 from flask_admin import Admin
-from models import User, Role, Document, FileView, AdminModelView
+from models import User, Document, FileView, AdminModelView
 from admin_extend import MyAdminIndexView
 from flask import send_file
 from flask_babelex import Babel
 from flask.ext.login import LoginManager
+from flask_login import login_user, logout_user, current_user
+from flask import abort
 import io
 
 
@@ -53,9 +55,40 @@ def que_fem():
     return render_template("que_fem.html")
 
 
-@app.route('/acces', methods=['GET'])
+def get_user_docs(user):
+    public = list(Document.query.filter_by(compartit=True))
+    private = list(user.documents.all())
+    docs = public + private
+    return set(docs)
+
+
+@app.route('/acces', methods=['GET', 'POST'])
 def acces():
-    return render_template("qui_som1.html")
+    error = ""
+    docs = []
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        user = User.query.filter_by(email=email.lower()).first()
+        if user:
+            if (user.password == password):
+                login_user(user)
+                docs = get_user_docs(user)
+            else:
+                error = 'Invalid username or password.'
+        else:
+            error = 'Invalid username or password.'
+    else:
+        if current_user.is_authenticated:
+            docs = get_user_docs(current_user)
+
+    return render_template("acces.html", docs=docs, error=error)
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    logout_user()
+    return render_template('acces.html')
 
 
 @app.route('/contacte', methods=['GET'])
@@ -66,12 +99,19 @@ def contactce():
 # download route
 @app.route("/download/<int:id>", methods=['GET'])
 def download_blob(id):
-    file = Document.query.get_or_404(id)
-    return send_file(
-        io.BytesIO(file.blob),
-        attachment_filename=file.filename,
-        mimetype=file.mimetype
-    )
+    print (current_user)
+    if current_user.is_authenticated and (current_user.has_role('admin') or
+                                          id in [doc.id for doc in
+                                          get_user_docs(current_user)]):
+
+        print ("inside")
+        file = Document.query.get_or_404(id)
+        return send_file(
+            io.BytesIO(file.blob),
+            attachment_filename=file.filename,
+            mimetype=file.mimetype
+        )
+    abort(404)
 
 
 if __name__ == '__main__':
