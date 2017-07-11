@@ -23,10 +23,6 @@
         <object-id>16401</object-id>
         <state-number>670</state-number>
       </sequence>
-      <table id="5" parent="2" name="alembic_version">
-        <object-id>16412</object-id>
-        <state-number>671</state-number>
-      </table>
       <table id="6" parent="2" name="posts">
         <object-id>16403</object-id>
         <state-number>676</state-number>

@@ -4,9 +4,9 @@
 <title>Salut Ambiental</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="static/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="static/css/coin-slider.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="static/images/salut.ico" />
-<link rel="stylesheet" type="text/css" href="static/css/coin-slider.css" />
 <script type="text/javascript" src="static/js/cufon-yui.js"></script>
 <script type="text/javascript" src="static/js/cufon-titillium-250.js"></script>
 <script type="text/javascript" src="static/js/jquery-1.4.2.min.js"></script>
@@ -143,8 +143,8 @@ table tr td{
 }
 
 select.dropdown {
-  cursor:pointer;
   margin: 0px;
+  cursor:pointer;
   margin-top: 12px;
   height: 48px;
   width: 100%;
@@ -167,10 +167,10 @@ select.dropdown {
 <div class="main background">
   <div class="header">
     <div class="header_resize">
-    <div class="container">     
-            <div class="drop-menu">
-              <div class="select">
-                <span>Català</span>
+      <div class="container">     
+       <div class="drop-menu">
+          <div class="select">
+              <span>Castellano</span>
                 <i class="fa fa-chevron-down"></i>
               </div>
               <input type="hidden" name="gender">
@@ -181,17 +181,17 @@ select.dropdown {
             </div>
       </div>
       <div class="logo">
-        <a href="/inici"><img src="static/images/logo.png"></a> <p>Serveis de gestió sanitària i ambiental</p>
+       <a href="/inicio"><img src="static/images/logo.png"></a> <p>Servicios de gestión sanitaria y ambiental</p>
       </div>
 
       <div class="clr"></div>
       <div class="menu_nav">
         <ul>
-          <li><a href="inici"><span>Inici</span></a></li>
-          <li><a href="qui_som"><span>Qui Som</span></a></li>
-          <li><a href="que_fem"><span>Que fem</span></a></li>
-          <li class="active"><a href="acces"><span>Accés</span></a></li>
-          <li><a href="contacte"><span>Contacte</span></a></li>
+          <li><a href="inicio"><span>Inicio</span></a></li>
+          <li><a href="quienes_somos"><span>Quienes somos</span></a></li>
+          <li><a href="que_hacemos"><span>Que hacemos</span></a></li>
+          <li class="active"><a href="acceso"><span>Acceso</span></a></li>
+          <li><a href="contacto"><span>Contacto</span></a></li>
         </ul>
       </div>
       <div class="clr"></div>
@@ -204,18 +204,18 @@ select.dropdown {
         <div class="article" style="width:100%; border-bottom:0px;margin-top:20px">
           {% if current_user.is_authenticated %} 
           <div>
-          <h2 style="margin-top:40px;border-bottom: solid 0.5px;padding-bottom: 20px;border-color: gainsboro;"><span;>Espai clients</span></h2>
-          <span style="margin-top:40px;display:block;float:left;font-size:1.9em;color:#fc6400"> Benvingut {{current_user.email}}</span>
-          <form style="display:block;float:right;border: 0px;width:350px;padding:0px;margin-top:30px" action="/logout_cat" method="post">
+          <h2 style="margin-top:40px;border-bottom: solid 0.5px;padding-bottom: 20px;border-color: gainsboro;"><span;>Espacio clientes</span></h2>
+          <span style="margin-top:40px;display:block;float:left;font-size:1.9em;color:#fc6400"> Bienvenido {{current_user.email}}</span>
+          <form style="display:block;float:right;border: 0px;width:350px;padding:0px;margin-top:30px" action="/logout_cast" method="post">
                 <input type="submit" name="submit" value="logout">
           </form>          </span;>
           </div>
           {% else %}
-          <h2 style="margin-top:40px"><span;>Accés clients</span></h2>
+          <h2 style="margin-top:40px"><span;>Acceso clientes</span></h2>
           {% endif %}
             <div class="clr" style="margin-bottom:70px"></div>
               {% if current_user.is_authenticated %}
-                <h2> Documents </h2>
+                <h2> Documentos </h2>
                 {% if docs %}
 
                   <select class="dropdown" id="tipus-doc">
@@ -235,10 +235,10 @@ select.dropdown {
                   <!-- Table Header -->
                   <thead>
                     <tr>
-                      <th style="padding:0.5625rem 0.625rem;"><div>Nom</div></th>
-                      <th style="padding:0.5625rem 0.625rem;"><div>Tamany</div></th>
-                      <th style="padding:0.5625rem 0.625rem;"><div>Data</div></th>
-                      <th style="padding:0.5625rem 0.625rem;"><div>Descarrega</div></th>
+                      <th style="padding:0.5625rem 0.625rem;"><div>Nombre</div></th>
+                      <th style="padding:0.5625rem 0.625rem;"><div>Tamaño</div></th>
+                      <th style="padding:0.5625rem 0.625rem;"><div>Fecha</div></th>
+                      <th style="padding:0.5625rem 0.625rem;"><div>Descarga</div></th>
                     </tr>
                   </thead>
                   <!-- Table Header -->
@@ -252,7 +252,7 @@ select.dropdown {
                       {{'%0.2f' % size|float}} MB
                       </td>
                       <td class="table-td" doc-type={{doc.tipus}}>{{doc.creat.strftime('%d-%m-%Y')}}</td>
-                      <td class="table-td" doc-type={{doc.tipus}}><a href="/download/{{doc.id}}">Descarrega</a></td>
+                      <td class="table-td" doc-type={{doc.tipus}}><a href="/download/{{doc.id}}">Descarga</a></td>
                     </tr><!-- Table Row -->
                   <!-- Table Body -->
                 {% endfor %}
@@ -261,15 +261,14 @@ select.dropdown {
                 </div>
                 </div></div></div></div>
                 {% else %}
-                <p style="margin-top:40px"> No hi ha documents disponibles per a descarregar.</p>
+                <p style="margin-top:40px"> No hay documentos disponibles para descargar.</p>
                 {% endif %}
               {% else %}
-              <form action="/acces" method="post">
+              <form action="/acceso" method="post">
                 <input type="text" id="email" name="email" placeholder="Email">
                 <input type="password" id="password" name="password" placeholder="Contrassenya">
-                <p style="margin-left:50px; color:red">{% if error %}{{error}}{% endif %}</p>
-
                 <input type="submit" name="submit" value="Login">
+                {% if error %}{{error}}{% endif %}
               </form>
             {% endif %}
         </div>

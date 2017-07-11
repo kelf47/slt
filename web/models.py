@@ -64,18 +64,34 @@ class BlobMixin(object):
     size = db.Column(db.Integer, nullable=False)
 
 
+class TipusDocument(db.Model):
+    __tablename__ = 'tipus_document'
+    id = db.Column(db.Integer(), primary_key=True)
+    tipus = db.Column(db.String(50), nullable=False, server_default=u'',
+                      unique=True)
+
+    def __str__(self):
+        return self.tipus
+
+
 class Document(db.Model, BlobMixin):
     __tablename__ = 'documents'
 
     id = db.Column(db.Integer, primary_key=True)
+    creat = db.Column(db.DateTime, server_default=db.func.now())
     nom = db.Column(db.Unicode(length=255), nullable=False, unique=True)
     compartit = db.Column(db.Boolean(), nullable=False, server_default='0')
     clients = db.relationship('User', secondary='users_documents',
                               backref=db.backref('documents', lazy='dynamic'))
+    tipus_id = db.Column(db.Integer(), db.ForeignKey('tipus_document.id'))
+    tipus = db.relationship('TipusDocument', foreign_keys=tipus_id)
 
     def __str__(self):
         return u"nom: {name}; document: {filename})".format(
             name=self.nom, filename=self.filename)
+
+    def __lt__(self, other):
+        return self.creat > other.creat
 
 
 users_documents = db.Table(
@@ -159,11 +175,23 @@ class AdminModelView(ModelView):
         return False
 
 
+class TipusDocumentView(ModelView):
+
+    column_searchable_list = ('tipus', )
+
+    def is_accessible(self):
+        if current_user.is_authenticated:
+            return current_user.has_role('admin')
+        return False
+
+
 class FileView(AdminModelView):
 
-    column_list = ('nom', 'size', 'filename', 'mimetype', 'download')
-    form_columns = ('nom', 'clients', 'compartit', 'blob')
+    column_list = ('nom', 'size', 'filename', 'mimetype', 'creat', 'download')
+    form_columns = ('nom', 'clients', 'tipus', 'compartit', 'blob')
     column_searchable_list = ('nom',)
+    column_filters = ('tipus', 'clients.email', 'compartit',)
+
     form_extra_fields = {'blob': BlobUploadField(
         label='Document',
         allowed_extensions=['pdf', 'doc', 'docx', 'xls', 'xlsx'],

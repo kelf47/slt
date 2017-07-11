@@ -1,7 +1,6 @@
 # create_db.py
 from app import db
 from models import User, Role
-import datetime
 import hashlib
 import hmac
 import base64
