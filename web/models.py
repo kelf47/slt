@@ -140,7 +140,7 @@ class BlobUploadField(fields.StringField):
                 self.data.filename):
             raise ValidationError(
                 'Format no valid. Formats acceptats: '
-                '[.pdf, .doc, .docx, .xls, .xlsx]')
+                '[.pdf, .doc, .docx, .xls, .xlsx, jpeg, png, jpg, gif]')
 
     def process_formdata(self, valuelist):
         if valuelist:
@@ -194,7 +194,8 @@ class FileView(AdminModelView):
 
     form_extra_fields = {'blob': BlobUploadField(
         label='Document',
-        allowed_extensions=['pdf', 'doc', 'docx', 'xls', 'xlsx'],
+        allowed_extensions=['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpeg',
+                            'png', 'jpg', 'gif'],
         size_field='size',
         filename_field='filename',
         mimetype_field='mimetype'

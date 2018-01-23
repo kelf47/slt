@@ -7,7 +7,7 @@ body {
 	color:#6e6e6e;
 	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
 	min-height:800;
-	background-image: url("../images/background21.png");
+	background-image: url("../images/background21.jpg");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-attachment: fixed;
@@ -427,7 +427,7 @@ h1 small {
 /*  --------------------- galeria ---------------------------  */
 
 
-.login { 
+.login {
 	height:110px;
 	width:190px;
 	margin:auto;
@@ -435,7 +435,7 @@ h1 small {
 	padding:10px;
 }
 
-.login input { 
+.login input {
 	padding:5px;
 	margin:5px
  }
@@ -459,7 +459,7 @@ h1 small {
 
 /* Modal Content */
 html.noscroll {
-    position: fixed; 
+    position: fixed;
     overflow-y: scroll;
     width: 100%;
 }
@@ -482,31 +482,21 @@ html.noscroll {
 .modal-header > span {
 	font-size:2.4em;
 	color:white;
-	margin-left:580px;
 	display:table-cell;
 	vertical-align:middle;
-}
-.modal-header > img {
-	margin-top: 6px;
-	margin-left: 20px;
-	height: 60px;
-	width: auto;
 }
 
 .modal-body{
 	overflow-y:scroll;
 	height:90%;
-	
+
 }
 
 /* The Close Button */
 .close {
     color: #aaaaaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 20px;
-    margin-right: 25px;
 }
 
 .close:hover,
