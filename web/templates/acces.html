@@ -48,7 +48,7 @@ input[type="password"]:focus{
 
 input[type="submit"]{
   width: 40%;
-  background: #fc6400; 
+  background: #fc6400;
   border: none;
   border-radius: 50px;
   text-transform: uppercase;
@@ -136,7 +136,7 @@ table tr td{
 #bodywrap ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
 }
- 
+
 .tab {
   widht: 300px;
   height: 200px;
@@ -167,7 +167,7 @@ select.dropdown {
 <div class="main background">
   <div class="header">
     <div class="header_resize">
-    <div class="container">     
+    <div class="container">
             <div class="drop-menu">
               <div class="select">
                 <span>Català</span>
@@ -202,7 +202,7 @@ select.dropdown {
     <div class="content_resize">
       <div class="mainbar">
         <div class="article" style="width:100%; border-bottom:0px;margin-top:20px">
-          {% if current_user.is_authenticated %} 
+          {% if current_user.is_authenticated %}
           <div>
           <h2 style="margin-top:40px;border-bottom: solid 0.5px;padding-bottom: 20px;border-color: gainsboro;"><span;>Espai clients</span></h2>
           <span style="margin-top:40px;display:block;float:left;font-size:1.9em;color:#fc6400"> Benvingut {{current_user.email}}</span>
@@ -246,13 +246,13 @@ select.dropdown {
                 {% for doc in docs %}
                   <!-- Table Body -->
                     <tr {% if loop.index %2 == 0 %}class="even table-tr"{% endif %} data-type={{doc.tipus.tipus}}>
-                      <td class="table-td" doc-type={{doc.tipus}}>{{doc.nom}}</td>
-                      <td class="table-td" doc-type={{doc.tipus}}>
+                      <td class="table-td" doc-type="{{doc.tipus}}">{{doc.nom}}</td>
+                      <td class="table-td" doc-type="{{doc.tipus}}">
                       {% set size = doc.size/1048576 %}
                       {{'%0.2f' % size|float}} MB
                       </td>
-                      <td class="table-td" doc-type={{doc.tipus}}>{{doc.creat.strftime('%d-%m-%Y')}}</td>
-                      <td class="table-td" doc-type={{doc.tipus}}><a href="/download/{{doc.id}}">Descarrega</a></td>
+                      <td class="table-td" doc-type="{{doc.tipus}}">{{doc.creat.strftime('%d-%m-%Y')}}</td>
+                      <td class="table-td" doc-type="{{doc.tipus}}"><a href="/download/{{doc.id}}">Descarrega</a></td>
                     </tr><!-- Table Row -->
                   <!-- Table Body -->
                 {% endfor %}

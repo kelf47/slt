@@ -5,6 +5,8 @@ web:
     - "8000"
   links:
     - postgres:postgres
+  volumes:
+    - /data/slt/static:/data/static
   env_file: .env
   command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
   environment:
@@ -17,6 +19,7 @@ nginx:
     - "80:80"
   volumes:
     - ./web/static:/www/static
+    - /data/slt/static:/data/static
   volumes_from:
     - web
   links:

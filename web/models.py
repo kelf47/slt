@@ -168,6 +168,7 @@ class BlobUploadField(fields.StringField):
 class AdminModelView(ModelView):
 
     column_searchable_list = ('nom', 'email',)
+    form_excluded_columns = ('documents',)
 
     def is_accessible(self):
         if current_user.is_authenticated:

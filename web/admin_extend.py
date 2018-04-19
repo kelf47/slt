@@ -19,6 +19,7 @@ class LoginForm(form.Form):
         user = self.get_user()
         if user is None:
             self.email.errors.append('Usuari invàlid')
+            return
 
         # we're comparing the plaintext pw with the the hash from the db
         if user.password != self.password.data:
