@@ -73,9 +73,18 @@ def que_hacemos():
 
 
 def get_user_docs(user):
-    public = list(Document.query.filter_by(compartit=True))
-    private = list(user.documents.all())
+    public = list(Document.query.with_entities(
+        Document.nom, Document.tipus_id, Document.id,
+        Document.size, Document.creat).filter_by(compartit=True))
+    private = list(user.documents.with_entities(
+        Document.nom, Document.tipus_id, Document.id,
+        Document.size, Document.creat).all())
     docs = list(set(public + private))
+    for doc in docs:
+        tipus_query = TipusDocument.query.filter_by(id=doc.tipus_id)
+        if tipus_query:
+            tipus = tipus_query[0]
+            doc.tipus_id = tipus.tipus
     docs.sort()
     return docs
 
@@ -83,8 +92,8 @@ def get_user_docs(user):
 def get_user_tipus(docs):
     tipus = set()
     for doc in docs:
-        if doc.tipus:
-            tipus.add(doc.tipus.tipus)
+        if doc.tipus_id:
+            tipus.add(doc.tipus_id)
     return tipus
 
 

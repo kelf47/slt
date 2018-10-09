@@ -245,14 +245,14 @@ select.dropdown {
                   <tbody >
                 {% for doc in docs %}
                   <!-- Table Body -->
-                    <tr {% if loop.index %2 == 0 %}class="even table-tr"{% endif %} data-type={{doc.tipus.tipus}}>
-                      <td class="table-td" doc-type="{{doc.tipus}}">{{doc.nom}}</td>
-                      <td class="table-td" doc-type="{{doc.tipus}}">
+                    <tr {% if loop.index %2 == 0 %}class="even table-tr"{% endif %} data-type={{doc.tipus_id}}>
+                      <td class="table-td" doc-type="{{doc.tipus_id}}">{{doc.nom}}</td>
+                      <td class="table-td" doc-type="{{doc.tipus_id}}">
                       {% set size = doc.size/1048576 %}
                       {{'%0.2f' % size|float}} MB
                       </td>
-                      <td class="table-td" doc-type="{{doc.tipus}}">{{doc.creat.strftime('%d-%m-%Y')}}</td>
-                      <td class="table-td" doc-type="{{doc.tipus}}"><a href="/download/{{doc.id}}">Descarrega</a></td>
+                      <td class="table-td" doc-type="{{doc.tipus_id}}">{{doc.creat.strftime('%d-%m-%Y')}}</td>
+                      <td class="table-td" doc-type="{{doc.tipus_id}}"><a href="/download/{{doc.id}}">Descarrega</a></td>
                     </tr><!-- Table Row -->
                   <!-- Table Body -->
                 {% endfor %}
