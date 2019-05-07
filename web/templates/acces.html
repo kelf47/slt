@@ -237,7 +237,6 @@ select.dropdown {
                     <tr>
                       <th style="padding:0.5625rem 0.625rem;"><div>Nom</div></th>
                       <th style="padding:0.5625rem 0.625rem;"><div>Tamany</div></th>
-                      <th style="padding:0.5625rem 0.625rem;"><div>Data</div></th>
                       <th style="padding:0.5625rem 0.625rem;"><div>Descarrega</div></th>
                     </tr>
                   </thead>
@@ -251,7 +250,6 @@ select.dropdown {
                       {% set size = doc.size/1048576 %}
                       {{'%0.2f' % size|float}} MB
                       </td>
-                      <td class="table-td" doc-type="{{doc.tipus_id}}">{{doc.creat.strftime('%d-%m-%Y')}}</td>
                       <td class="table-td" doc-type="{{doc.tipus_id}}"><a href="/download/{{doc.id}}">Descarrega</a></td>
                     </tr><!-- Table Row -->
                   <!-- Table Body -->
@@ -265,7 +263,7 @@ select.dropdown {
                 {% endif %}
               {% else %}
               <form action="/acces" method="post">
-                <input type="text" id="email" name="email" placeholder="Email">
+                <input type="text" id="email" name="email" placeholder="Usuari">
                 <input type="password" id="password" name="password" placeholder="Contrassenya">
                 <p style="margin-left:50px; color:red">{% if error %}{{error}}{% endif %}</p>
 

@@ -11,6 +11,8 @@ web:
   command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
   environment:
     - PYTHONUNBUFFERED=0
+  log_opt:
+    max-size: 50m
 
 nginx:
   restart: always
@@ -24,6 +26,8 @@ nginx:
     - web
   links:
     - web:web
+  log_opt:
+    max-size: 50m
 
 postgres:
   restart: always
@@ -32,3 +36,9 @@ postgres:
     - /home/kelf/postgresdata:/var/lib/postgresql/data
   ports:
     - "5432:5432"
+  environment:
+    - PYTHONUNBUFFERED=0
+    - POSTGRES_USER=slt-admin
+    - POSTGRES_PASSWORD=Cu3nT4Cl
+  log_opt:
+    max-size: 50m

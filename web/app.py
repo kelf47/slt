@@ -82,10 +82,10 @@ def get_user_docs(user):
     docs = list(set(public + private))
     for doc in docs:
         tipus_query = TipusDocument.query.filter_by(id=doc.tipus_id)
-        if tipus_query:
+        if tipus_query.count() > 0:
             tipus = tipus_query[0]
             doc.tipus_id = tipus.tipus
-    docs.sort()
+    docs = sorted(docs, key=lambda x: x[0].lower())
     return docs
 
 
@@ -94,7 +94,8 @@ def get_user_tipus(docs):
     for doc in docs:
         if doc.tipus_id:
             tipus.add(doc.tipus_id)
-    return tipus
+    tipus_lst = sorted(list(tipus))
+    return tipus_lst
 
 
 @app.route('/acces', methods=['GET', 'POST'])
